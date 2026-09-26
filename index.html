@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Thí nghiệm: Phản ứng của cellulose với nitric acid</title>
+<style>
+*{box-sizing:border-box}body{margin:0;height:100vh;overflow:hidden;font-family:Segoe UI,Arial,sans-serif;color:#f8fafc;background:radial-gradient(circle at center,#1e1b4b,#020617)}
+#app{display:flex;height:100%}.panel{width:385px;padding:18px;background:rgba(30,41,59,.9);overflow:auto;border-right:1px solid #ffffff22}.work{position:relative;flex:1;min-width:650px}
+h1{font-size:19px;text-align:center;color:#60a5fa}.step{padding:12px;margin:9px 0;border-radius:8px;background:#0005;border-left:4px solid #3b82f6;line-height:1.42}.off{opacity:.32;pointer-events:none}.done{border-left-color:#10b981}
+.shelf{position:absolute;right:18px;top:18px;display:flex;gap:10px;flex-wrap:wrap;max-width:520px;padding:12px;background:#0007;border-radius:14px;z-index:20}.chem{width:72px;text-align:center;font-size:11px;cursor:pointer}.chem.off{opacity:.28}.bottle{width:38px;height:58px;margin:auto;border:2px solid #ffffff88;border-radius:9px;background:linear-gradient(transparent 30%,#ffffff22 30%);position:relative}.bottle:before{content:"";position:absolute;left:9px;top:-9px;width:16px;height:9px;background:#cbd5e1;border-radius:2px}
+button{border:0;border-radius:7px;padding:9px 14px;background:#3b82f6;color:white;font-weight:700;cursor:pointer;margin-top:8px}
+#desk{position:absolute;left:4%;right:4%;bottom:-45px;height:150px;background:linear-gradient(#334155,#0f172a);border-top:2px solid #64748b;border-radius:50%/20px}
+#iceBath,#hotBath{position:absolute;left:10%;bottom:65px;width:330px;height:175px;border:4px solid #ffffff77;border-top:0;border-radius:0 0 50px 50px;overflow:hidden;z-index:2}
+#iceBath{background:linear-gradient(transparent 20%,#8dd9ff66 20%)}#hotBath{display:none;background:linear-gradient(transparent 20%,#38bdf855 20%)}
+.ice{position:absolute;width:38px;height:25px;background:#dff7ffcc;border:1px solid white;transform:rotate(15deg);border-radius:5px}
+#beaker{position:absolute;left:18%;bottom:78px;width:150px;height:190px;border:5px solid #ffffff77;border-top:0;border-radius:0 0 28px 28px;overflow:hidden;z-index:5;transition:.7s}
+#mix{position:absolute;bottom:0;width:100%;height:47%;background:linear-gradient(90deg,#f8fafc44,#ffffff22,#e2e8f044)}
+#cotton{position:absolute;left:38px;bottom:38px;width:70px;height:45px;transition:2.5s}.puff{position:absolute;background:white;border-radius:50%}
+#bubbles{position:absolute;inset:0;pointer-events:none}.bubble{position:absolute;bottom:5px;border:1px solid #dff6ff;background:#ffffff22;border-radius:50%;animation:rise 1.5s linear forwards}@keyframes rise{to{transform:translateY(-135px);opacity:0}}
+#dish{position:absolute;left:64%;bottom:75px;width:210px;height:52px;border-radius:50%;background:radial-gradient(ellipse,#e2e8f0,#64748b);border:3px solid #ffffff99;display:none;z-index:5}
+#product{position:absolute;left:58px;top:4px;width:95px;height:38px;display:none}.fiber{position:absolute;width:70px;height:9px;background:#f8fafc;border-radius:50%;transform-origin:left center}
+#flame{position:absolute;left:82px;bottom:24px;width:48px;height:80px;display:none;z-index:8;background:radial-gradient(ellipse at bottom,#fff7ad 0 18%,#ffb020 35%,#ff5a1f 62%,transparent 64%);border-radius:55% 45% 60% 40%;filter:drop-shadow(0 0 14px #ff9d00);animation:flick .12s infinite alternate}@keyframes flick{to{transform:scale(.9,1.08) rotate(2deg)}}
+#status{position:absolute;left:22px;bottom:18px;color:#cbd5e1;font-size:17px}
+#intro{position:fixed;inset:0;background:#0f172af7;z-index:100;display:flex;align-items:center;justify-content:center}.card{max-width:640px;padding:28px;background:#1e293b;border:1px solid #3b82f6;border-radius:16px;line-height:1.5}.card h2{color:#60a5fa}.warn{color:#fde68a}
+
+/* Mobile-first responsive patch */
+html,body{width:100%;min-height:100%;height:auto}
+body{min-height:100dvh;overflow-x:hidden;overflow-y:auto;-webkit-text-size-adjust:100%;touch-action:manipulation}
+#app{min-height:100dvh;height:auto;display:flex}
+.panel{-webkit-overflow-scrolling:touch}
+button,.chem{touch-action:manipulation}
+button{min-height:44px}
+@media (max-width: 800px){
+  #app{display:block;height:auto;min-height:100dvh}
+  .panel{
+    width:100%;height:auto;max-height:none;padding:14px;
+    border-right:0;border-bottom:1px solid #ffffff22;overflow:visible
+  }
+  h1{font-size:18px}
+  .step{font-size:14px;padding:10px;margin:8px 0}
+  .work{
+    position:relative;min-width:0;width:100%;height:68dvh;min-height:500px;
+    overflow:hidden
+  }
+  .shelf{
+    left:8px;right:8px;top:8px;max-width:none;padding:8px;gap:6px;
+    justify-content:center
+  }
+  .chem{width:58px;font-size:10px}
+  .bottle{width:32px;height:48px}
+  #desk{left:0;right:0;bottom:-35px;height:120px}
+  #iceBath,#hotBath{
+    left:5%;bottom:70px;width:48%;height:145px
+  }
+  #beaker{
+    left:13%;bottom:80px;width:115px;height:155px
+  }
+  #dish{
+    left:auto;right:7%;bottom:85px;width:155px;height:45px
+  }
+  #product{left:34px;transform:scale(.82);transform-origin:left top}
+  #flame{left:55px;bottom:20px;transform:scale(.82);transform-origin:center bottom}
+  #status{
+    left:12px;right:12px;bottom:10px;font-size:14px;
+    background:#020617cc;padding:8px 10px;border-radius:8px;z-index:40
+  }
+  #intro{padding:14px;overflow:auto}
+  .card{width:100%;max-width:560px;padding:20px;font-size:14px}
+}
+@media (max-width: 430px){
+  .work{height:72dvh;min-height:520px}
+  .shelf{gap:3px}
+  .chem{width:54px}
+  #iceBath,#hotBath{left:3%;width:54%;height:135px}
+  #beaker{left:12%;width:105px;height:145px}
+  #dish{right:4%;width:145px}
+}
+
+</style>
+</head>
+<body>
+<div id="intro"><div class="card"><h2>PHÒNG THÍ NGHIỆM ẢO</h2><h3>Phản ứng của cellulose với nitric acid</h3>
+<p>Mô phỏng quá trình tạo cellulose nitrate từ cellulose trong hỗn hợp nitric acid và sulfuric acid, sau đó quan sát tính cháy của sản phẩm.</p>
+<p class="warn"><b>Chú ý an toàn:</b> HNO₃ đặc, H₂SO₄ đặc và sản phẩm nitrate hóa nguy hiểm. Nội dung này chỉ mô phỏng thí nghiệm theo tài liệu học tập.</p>
+<button onclick="start()">Bắt đầu thực hành</button></div></div>
+
+<div id="app"><aside class="panel"><h1>SỔ TAY THÍ NGHIỆM</h1>
+<div class="step" id="s1"><b>Bước 1. Chuẩn bị hỗn hợp</b><br>Cho khoảng 5 mL HNO₃ đặc vào cốc thủy tinh đặt trong chậu nước đá. Thêm từ từ khoảng 10 mL H₂SO₄ đặc và khuấy đều.</div>
+<div class="step off" id="s2"><b>Bước 2. Thêm cellulose</b><br>Lấy cốc ra khỏi chậu nước đá, thêm một nhúm bông và dùng đũa thủy tinh ấn bông ngập trong dung dịch.</div>
+<div class="step off" id="s3"><b>Bước 3. Ngâm nóng</b><br>Ngâm cốc trong chậu nước nóng khoảng 10 phút. Để nguội, lấy sản phẩm ra, rửa với nước lạnh rồi rửa bằng NaHCO₃ loãng.</div>
+<div class="step off" id="s4"><b>Bước 4. Làm khô và thử tính cháy</b><br>Ép sản phẩm giữa hai miếng giấy lọc, làm khô tự nhiên. Đặt sản phẩm lên đĩa sứ rồi đốt cháy.</div>
+<div class="step off" id="final"><b>Hiện tượng & giải thích</b><br><b>Hiện tượng:</b> Miếng bông trên đĩa sứ cháy rất nhanh, không xuất hiện khói và không để lại tàn.<br><br><b>Giải thích:</b> Các nhóm –OH của cellulose có thể bị nitrate hóa tạo cellulose nitrate, dinitrate hoặc trinitrate tùy điều kiện.<br><br>
+[C₆H₇O₂(OH)₃]ₙ + 3nHNO₃ → [C₆H₇O₂(ONO₂)₃]ₙ + 3nH₂O<br><br>
+[C₆H₇O₂(OH)₃]ₙ + 2nHNO₃ → [C₆H₇O₂(OH)(ONO₂)₂]ₙ + 2nH₂O
+<br><button onclick="location.reload()">Thực hiện lại</button></div>
+</aside>
+
+<main class="work">
+<div class="shelf">
+<div class="chem" id="c-hno3" onclick="act('hno3')"><div class="bottle"></div>HNO₃ đặc</div>
+<div class="chem off" id="c-h2so4" onclick="act('h2so4')"><div class="bottle"></div>H₂SO₄ đặc</div>
+<div class="chem off" id="c-cotton" onclick="act('cotton')"><div class="bottle" style="background:white"></div>Cellulose</div>
+<div class="chem off" id="c-wash" onclick="act('wash')"><div class="bottle"></div>Nước lạnh</div>
+<div class="chem off" id="c-nahco3" onclick="act('nahco3')"><div class="bottle"></div>NaHCO₃ loãng</div>
+</div>
+<div id="desk"></div>
+<div id="iceBath"></div><div id="hotBath"></div>
+<div id="beaker"><div id="mix"></div><div id="cotton"></div><div id="bubbles"></div></div>
+<div id="dish"><div id="product"></div><div id="flame"></div></div>
+<div id="status">Chọn HNO₃ đặc để bắt đầu.</div>
+</main></div>
+
+<script>
+let state=0,timer=null;const $=x=>document.getElementById(x);
+function start(){$('intro').style.display='none';makeCotton();makeIce()}
+function makeCotton(){let c=$('cotton');for(let i=0;i<14;i++){let p=document.createElement('i');p.className='puff';p.style.left=Math.random()*45+'px';p.style.top=Math.random()*25+'px';p.style.width=25+Math.random()*30+'px';p.style.height=15+Math.random()*22+'px';c.appendChild(p)}}
+function makeIce(){let b=$('iceBath');for(let i=0;i<6;i++){let q=document.createElement('i');q.className='ice';q.style.left=15+i*48+'px';q.style.bottom=8+(i%2)*25+'px';b.appendChild(q)}}
+function en(x){$('c-'+x).classList.remove('off')}function dis(x){$('c-'+x).classList.add('off')}function step(a,b){$(a).classList.add('off');$(a).classList.add('done');$(b).classList.remove('off')}
+function bubbles(on){if(!on){clearInterval(timer);return}timer=setInterval(()=>{let b=document.createElement('i');b.className='bubble';let z=4+Math.random()*8;b.style.width=b.style.height=z+'px';b.style.left=10+Math.random()*120+'px';$('bubbles').appendChild(b);setTimeout(()=>b.remove(),1600)},120)}
+function act(x){
+if(x==='hno3'&&state===0){dis(x);en('h2so4');state=1;$('status').textContent='Đã cho HNO₃ đặc vào cốc trong chậu nước đá. Thêm H₂SO₄ đặc.'}
+else if(x==='h2so4'&&state===1){dis(x);$('mix').style.height='62%';$('status').textContent='Đang thêm từ từ H₂SO₄ đặc và khuấy trong chậu nước đá...';setTimeout(()=>{step('s1','s2');en('cotton');state=2;$('status').textContent='Hỗn hợp đã chuẩn bị. Thêm cellulose (bông).'},1800)}
+else if(x==='cotton'&&state===2){dis(x);$('iceBath').style.display='none';$('cotton').style.bottom='60px';$('cotton').style.opacity='.85';$('status').textContent='Bông được ấn ngập trong hỗn hợp acid.';setTimeout(()=>{step('s2','s3');$('hotBath').style.display='block';state=3;$('status').textContent='Đang ngâm cốc trong chậu nước nóng (mô phỏng 10 phút)...';setTimeout(()=>{ $('hotBath').style.display='none';en('wash');state=4;$('status').textContent='Đã để nguội. Rửa sản phẩm bằng nước lạnh.'},3600)},1200)}
+else if(x==='wash'&&state===4){dis(x);bubbles(true);setTimeout(()=>{bubbles(false);en('nahco3');state=5;$('status').textContent='Đã rửa nước. Tiếp tục rửa bằng NaHCO₃ loãng.'},2200)}
+else if(x==='nahco3'&&state===5){dis(x);bubbles(true);$('status').textContent='Đang rửa bằng NaHCO₃ loãng...';setTimeout(()=>{bubbles(false);step('s3','s4');state=6;prepareDish()},2300)}
+}
+function prepareDish(){
+$('beaker').style.display='none';$('iceBath').style.display='none';$('dish').style.display='block';let p=$('product');p.style.display='block';p.innerHTML='';
+for(let i=0;i<8;i++){let f=document.createElement('i');f.className='fiber';f.style.left=Math.random()*18+'px';f.style.top=3+i*4+'px';f.style.transform='rotate('+(Math.random()*18-9)+'deg)';p.appendChild(f)}
+$('status').innerHTML='Sản phẩm đã được ép và làm khô. <button onclick="burn()">Đốt mẫu trên đĩa sứ</button>';
+}
+function burn(){
+if(state!==6)return;state=7;$('status').textContent='Mẫu bắt cháy rất nhanh...';$('flame').style.display='block';
+setTimeout(()=>{$('product').style.opacity='0';$('product').style.transform='scale(.15)';},550);
+setTimeout(()=>{$('flame').style.display='none';$('product').style.display='none';step('s4','final');$('final').classList.add('done');$('status').textContent='Quan sát: cháy nhanh, không khói, không để lại tàn.'},1250)
+}
+</script>
+</body></html>
